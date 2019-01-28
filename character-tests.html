@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project 1 character tests</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="assets/javascript/app.js"></script>
+
+    <style>
+        #head,
+        #body,
+        #legs {
+            position: absolute;
+        }
+
+        #head {
+            z-index: 2;
+        }
+
+        #body {
+            z-index: 1;
+        }
+
+        #legs {
+            z-index: 0;
+        }
+
+        .move {
+            -webkit-transform: translate(30em, 0em);
+        }
+
+        .enemyImg {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
+        }
+
+        #testID {
+            float: left;
+        }
+
+        #enemy {
+            right: 500px;
+            position: absolute;
+        }
+
+        #boom {
+            position: absolute;
+            top: 120px;
+            right: 200px;
+            z-index: 100;
+        }
+
+        .hiddenImg {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div id="player"></div>
+        <div id="enemy"></div>
+        <img src='assets/images/boom.png' height="300px" width="300px" id="boom" class="hiddenImg">
+
+    </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br>
+    <button id='attack'>Attack</button>
+    <button id='goback'>Go Back</button>
+
+    <script>
+
+
+        //These images contain white halos/artifacts on their edges. By January 28th, I will have replaced them with non-haloed versions.
+        //This is a proof of concept -- 3 heads, 3 bodies, 3 feet, and 3 weapons.
+
+        //Using a timer, we can make the character do a swing with the weapon. It will just be a single frame, so it won't require 
+        // a bunch of assets or much of anything new
+
+        //This works for the MVP, I believe
+
+        var headVar = $('<img>').attr('src', 'assets/images/atkHead.gif').attr('id', 'head');
+        var bodyVar = $('<img>').attr('src', 'assets/images/atkBody.gif').attr('id', 'body');
+        var weaponVar = $('<img>').attr('src', 'assets/images/sword.gif').attr('id', 'legs');
+        var legsVar = $('<img>').attr('src', 'assets/images/atkFeet.gif').attr('id', 'legs');
+        $('#player').append(headVar).append(bodyVar).append(weaponVar).append(legsVar);
+
+        var headEnemy = $('<img>').attr('src', 'assets/images/defHead.gif').attr('id', 'head').addClass('enemyImg');
+        var bodyEnemy = $('<img>').attr('src', 'assets/images/defBody.gif').attr('id', 'body').addClass('enemyImg');
+        var weaponEnemy = $('<img>').attr('src', 'assets/images/mace.gif').attr('id', 'legs').addClass('enemyImg');
+        var legsEnemy = $('<img>').attr('src', 'assets/images/defFeet.gif').attr('id', 'legs').addClass('enemyImg');
+        $('#enemy').append(headEnemy).append(bodyEnemy).append(weaponEnemy).append(legsEnemy);
+
+
+
+
+        // ================================================================================================
+
+        // These buttons below are just to test that the character move as one piece without breaking. 
+        // They will not be in the final product. 
+
+        $('#attack').on("click", function () {
+            $('#player').addClass('move');
+            $('#boom').removeClass('hiddenImg');
+        });
+
+        $('#goback').on("click", function () {
+            $('#player').removeClass('move');
+            $('#boom').addClass('hiddenImg');
+        });
+
+        // ================================================================================================
+
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
